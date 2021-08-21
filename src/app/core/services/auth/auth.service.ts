@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private http: HttpService) { }
 
   fetchUser() {
-    return this.http.get('/auth/session/user').subscribe(response => {
+    return this.http.get('/social/session/user').subscribe(response => {
       localStorage.setItem('session', JSON.stringify(response));
     }, error => {
       localStorage.removeItem('session');
@@ -24,8 +24,13 @@ export class AuthService {
     return this.getUser() ? true : false;
   }
 
-  get userName(): boolean {
-    return this.getUser() ? this.getUser().name : '';
+  get firstName(): string {
+    return this.getUser() ? this.getUser().firstName : '';
+  }
+
+  get userName(): string {
+    const user = this.getUser();
+    return user ? (user.firstName + ' ' + user.lastName) : '';
   }
 
   get userAvatar(): boolean {
@@ -33,8 +38,7 @@ export class AuthService {
   }
 
   logout() {
-    this.http.post('/auth/logout', {}).subscribe(response => {
-      alert(response)
+    this.http.post('/social/logout', {}).subscribe(response => {
       localStorage.clear();
     });
   }
