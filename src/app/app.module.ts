@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppInitService, initializeApp } from './core/services/initializer/app-init.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { AppInitService, initializeApp } from './core/services/initializer/app-i
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [
     { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true}

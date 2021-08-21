@@ -1,0 +1,53 @@
+<header class="p-3">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">      
+            <img
+                width="40"
+                alt="Angular Logo"
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
+            />
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li *ngFor="let nav of navigation">
+                <a href="{{nav.url}}" class="nav-link px-2 link-dark">{{nav.title}}</a>
+            </li>
+        </ul>
+
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form>
+
+        <ng-container *ngIf="authService.isLoggedIn; else loginBlock">
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img alt="{{authService.userName}}" src="{{authService.userAvatar}}" width="32" height="32" class="rounded-circle">
+                    {{authService.firstName}}
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form action="/social/logout" method="post">
+                            <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sign out</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </ng-container>
+
+        <ng-template #loginBlock>
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i> Sign In
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="/social/oauth2/authorization/github"><i class="fab fa-github"></i> GitHub</a></li>
+                    <li><a class="dropdown-item" href="/social/oauth2/authorization/google"><i class="fab fa-google"></i> Google</a></li>
+                </ul>
+            </div>
+        </ng-template>
+      </div>
+    </div>
+</header>
