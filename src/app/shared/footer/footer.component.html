@@ -10,7 +10,7 @@
 
         <ul class="nav col-md-4 justify-content-end">
             <li *ngFor="let nav of navigation" class="nav-item">
-                <a href="{{nav.url}}" class="nav-link px-2 text-muted">{{nav.title}}</a>
+                <a routerLink="{{nav.url}}" class="nav-link px-2 text-muted">{{nav.title}}</a>
             </li>
         </ul>
     </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Constant } from 'src/app/core/services/constants/constant';
 
 @Component({
   selector: 'app-footer',
@@ -11,18 +12,14 @@ export class FooterComponent implements OnInit {
   public navigation: any[] = [];
 
   constructor() {
-    this.social = [
-      { title: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/beshambher' },
-      { title: 'LinkedIn', icon: 'fab fa-linkedin', url: 'https://www.linkedin.com/in/beshambher-chaukhwan' },
-      { title: 'Facebook', icon: 'fab fa-facebook', url: 'https://www.facebook.com/beshambher.chaukhwan' }
-    ];
+    this.social = Constant.social;
     this.navigation = [
       { title: 'Home', icon: 'fab fa-home', url: '/' },
-      { title: 'About', icon: 'fab fa-info', url: '#' },
+      { title: 'About', icon: 'fab fa-info', url: '/about' },
       { title: 'Blog', icon: 'fab fa-rss-square', url: '#' },
-      { title: 'Contact', icon: 'fas fa-address-book', url: '#' },
+      { title: 'Contact', icon: 'fas fa-address-book', url: '/contact' },
     ];
-   }
+  }
 
   ngOnInit(): void {
   }
