@@ -15,9 +15,9 @@ export class AuthService {
       localStorage.removeItem('session');
     });
   }
-  
+
   getUser() {
-    return JSON.parse(localStorage.getItem('session')+'');
+    return JSON.parse(localStorage.getItem('session') + '');
   }
 
   get isLoggedIn(): boolean {

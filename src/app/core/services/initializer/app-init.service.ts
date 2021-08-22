@@ -14,6 +14,6 @@ export class AppInitService {
 
 }
 
-export function initializeApp(appInitService: AppInitService) { 
+export function initializeApp(appInitService: AppInitService) {
   return () => appInitService.init();
 }

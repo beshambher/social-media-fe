@@ -5,8 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <router-outlet></router-outlet>
   `,
-  styles: [
-  ]
+  styles: []
 })
 export class SocialComponent implements OnInit {
 
