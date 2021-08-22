@@ -1,0 +1,21 @@
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-row-reverse align-items-center g-5 p-3 my-0 rounded-3 border shadow-lg bg-light">
+        <div class="col-12 col-md-6 my-md-0 ps-md-0 my-1">
+            <img src="/assets/images/beshambher.jpg" class="mx-auto img-fluid" alt="Beshambher" loading="lazy">
+        </div>
+        <div class="col-md-6 my-3">
+            <h1 class="display-5 fw-bold lh-1 mb-3">About</h1>
+            <p class="lead">
+                Hi there! <br>
+                I'm Beshambher Chaukhwan, a full stack developer from India who is curious about the virtual world of computers.
+                I am passionate about software development. I am a skilled Backend and Frontend Developer having experience of developing enterprise level applications.
+            </p>
+
+            <ul class="nav col-12 justify-content-start list-unstyled d-flex py-3">
+                <li *ngFor="let s of social" class="me-3 h4">
+                    <a class="text-muted" href="{{s.url}}" target="_blank"><i class="{{s.icon}}"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
