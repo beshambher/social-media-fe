@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-social',
   template: `
-    <router-outlet></router-outlet>
+    <div class="px-3 py-4">
+      <router-outlet></router-outlet>
+    </div>
   `,
   styles: []
 })
