@@ -1,0 +1,28 @@
+<div class="card rounded-3 border shadow-lg">
+    <div class="card-body">
+        <h5 class="card-title text-center">My Profile</h5>
+        <img [src]="user.avatar" class="img-thumbnail rounded-circle d-block mx-auto" alt="{{user.username}}">
+        <div class="card-text mt-2 border-top">
+            <ul class="list-group">
+                <li class="list-group-item border-0"><i class="fa fa-user pe-2"></i> {{user.firstName}} {{user.lastName}}</li>
+                <li class="list-group-item border-0"><i class="fas fa-pencil-alt pe-2"></i> {{user.username}}</li>
+                <li class="list-group-item border-0"><i class="far fa-envelope pe-2"></i> {{user.email}}</li>
+                <li class="list-group-item border-0"><i class="fas fa-home pe-2"></i> {{user.location}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="card rounded-3 border shadow-lg mt-2">
+    <div class="card-body">
+        <h5 class="card-title text-center">Following</h5>
+        <div class="card-text mt-2 border-top">
+            <ul class="list-group">
+                <li class="list-group-item border-0" *ngFor="let user of friends.content">
+                    <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}"/>
+                    {{user.firstName}} {{user.lastName}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
