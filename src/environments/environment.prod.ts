@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:8082/social'
+  apiUrl: 'https://social-media-beshambher.herokuapp.com/social'
 };
