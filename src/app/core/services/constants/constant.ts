@@ -1,3 +1,5 @@
+import { environment } from "src/environments/environment";
+
 export abstract class Constant {
 
     public static social: any[] = [
@@ -21,7 +23,7 @@ export abstract class Constant {
 
 export abstract class API {
 
-    public static base: string = '/social';
+    public static base: string = environment.apiUrl;
     
     public static post: string = API.base + '/posts';
 
