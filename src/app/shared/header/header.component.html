@@ -29,7 +29,7 @@
                     <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <ng-container *ngIf="authService.isAdmin">
-                        <li><a class="dropdown-item" href="/social/swagger-ui/"><i class="fas fa-book"></i> Swagger API Docs</a></li>
+                        <li><a class="dropdown-item" href="{{api.swaggerui}}"><i class="fas fa-book"></i> Swagger API Docs</a></li>
                         <li><hr class="dropdown-divider"></li>
                     </ng-container>
                     <li>
@@ -47,8 +47,8 @@
                     <i class="fas fa-user"></i> Sign In
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="/social/oauth2/authorization/github"><i class="fab fa-github"></i> GitHub</a></li>
-                    <li><a class="dropdown-item" href="/social/oauth2/authorization/google"><i class="fab fa-google"></i> Google</a></li>
+                    <li><a class="dropdown-item" href="{{api.loginGithub}}"><i class="fab fa-github"></i> GitHub</a></li>
+                    <li><a class="dropdown-item" href="{{api.loginGoogle}}"><i class="fab fa-google"></i> Google</a></li>
                 </ul>
             </div>
         </ng-template>

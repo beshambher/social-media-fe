@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { API } from 'src/app/core/services/constants/constant';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public api: any = API;
   public navigation: any[] = [];
 
   constructor(public authService: AuthService) {

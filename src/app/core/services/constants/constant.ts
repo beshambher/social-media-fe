@@ -25,10 +25,14 @@ export abstract class API {
 
     public static base: string = environment.apiUrl;
     
-    public static post: string = API.base + '/posts';
+    public static swaggerui: string = API.base + '/swagger-ui';
 
     public static logout: string = API.base + '/logout';
+    public static loginGithub: string = API.base + '/oauth2/authorization/github';
+    public static loginGoogle: string = API.base + '/oauth2/authorization/google';
     public static session: string = API.base + '/session/user';
+
+    public static post: string = API.base + '/posts';
     
     public static friends: string = API.base + '/user/friends';
     public static suggestions: string = API.base + '/user/suggestions';
