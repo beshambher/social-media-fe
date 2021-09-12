@@ -1,6 +1,7 @@
-# Social Media FrontEnd
+# [Social Media FrontEnd](https://beshambher.github.io/social-media-fe/)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0. <br>
+The site is published at https://beshambher.github.io/social-media-fe/
 
 ## Development server
 
