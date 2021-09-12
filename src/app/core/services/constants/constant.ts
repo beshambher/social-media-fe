@@ -30,5 +30,7 @@ export abstract class API {
     
     public static friends: string = API.base + '/user/friends';
     public static suggestions: string = API.base + '/user/suggestions';
+    public static follow: string = API.base + '/user/{1}/follow';
+    public static unfollow: string = API.base + '/user/{1}/unfollow';
 
 }

@@ -1,13 +1,26 @@
 <div class="card rounded-3 border shadow-lg">
     <div class="card-body">
-        <h5 class="card-title text-center">Follow People</h5>
-        <div class="card-text mt-2 border-top">
-            <ul class="list-group">
-                <li class="list-group-item border-0" *ngFor="let user of suggestions.content">
-                    <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}"/>
-                    {{user.firstName}} {{user.lastName}}
-                </li>
-            </ul>
+        <h5 class="card-title text-center pb-2 border-bottom">Follow People</h5>
+        <div class="d-flex align-items-center" *ngFor="let user of suggestions.content">
+            <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}" />
+
+            <div class="py-2 mb-0 small lh-sm border-bottom w-100">
+                <div class="d-flex justify-content-between">
+                    <strong class="text-gray-dark">{{user.firstName}} {{user.lastName}}</strong>
+                    <a routerLink="#" class="text-decoration-none" (click)="followUser(user.username)">
+                        <i class="fas fa-shoe-prints"></i> Follow
+                    </a>
+                </div>
+                <span class="text-muted d-block">{{user.username}}</span>
+            </div>
         </div>
+        <div class="d-flex" *ngIf="!suggestions || !suggestions.content.length">
+            <div class="py-3 mb-0 small lh-sm border-bottom w-100 text-muted">
+                You are following everybody!
+            </div>
+        </div>
+        <small class="d-block text-end mt-3">
+            <button class="btn btn-sm btn-link" [disabled]="!suggestions || suggestions.last" (click)="loadMore()">More Suggestions</button>
+        </small>
     </div>
 </div>

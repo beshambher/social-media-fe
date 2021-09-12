@@ -25,4 +25,18 @@ export class RightSidebarComponent implements OnInit {
     });
   }
 
+  followUser(username: string) {
+    this.http.put(API.follow.replace('{1}', username), {}).subscribe(() => {
+      location.reload();
+    });
+  }
+
+  loadMore() {
+    this.http.getList(API.suggestions + '?page=' + (this.suggestions.number + 1)).subscribe(response => {
+      const previousData: [] = this.suggestions.content;
+      this.suggestions = response;
+      this.suggestions.content = previousData.concat(this.suggestions.content);
+    });
+  }
+
 }

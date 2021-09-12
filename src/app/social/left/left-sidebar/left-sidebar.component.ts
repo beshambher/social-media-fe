@@ -27,4 +27,18 @@ export class LeftSidebarComponent implements OnInit {
     });
   }
 
+  unfollowUser(username: string) {
+    this.http.put(API.unfollow.replace('{1}', username), {}).subscribe(() => {
+      location.reload();
+    });
+  }
+
+  loadMore() {
+    this.http.getList(API.friends + '?page=' + (this.friends.number + 1)).subscribe(response => {
+      const previousData: [] = this.friends.content;
+      this.friends = response;
+      this.friends.content = previousData.concat(this.friends.content);
+    });
+  }
+
 }

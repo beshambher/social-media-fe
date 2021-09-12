@@ -13,16 +13,29 @@
     </div>
 </div>
 
-<div class="card rounded-3 border shadow-lg mt-2">
+<div class="card rounded-3 border shadow-lg my-2">
     <div class="card-body">
-        <h5 class="card-title text-center">Following</h5>
-        <div class="card-text mt-2 border-top">
-            <ul class="list-group">
-                <li class="list-group-item border-0" *ngFor="let user of friends.content">
-                    <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}"/>
-                    {{user.firstName}} {{user.lastName}}
-                </li>
-            </ul>
+        <h5 class="card-title text-center pb-2 border-bottom">Following</h5>
+        <div class="d-flex align-items-center" *ngFor="let user of friends.content">
+            <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}" />
+
+            <div class="py-2 mb-0 small lh-sm border-bottom w-100">
+                <div class="d-flex justify-content-between">
+                    <strong class="text-gray-dark">{{user.firstName}} {{user.lastName}}</strong>
+                    <a routerLink="#" class="text-decoration-none" (click)="unfollowUser(user.username)">
+                        <i class="fas fa-trash"></i> Unfollow
+                    </a>
+                </div>
+                <span class="text-muted d-block">{{user.username}}</span>
+            </div>
         </div>
+        <div class="d-flex" *ngIf="!friends || !friends.content.length">
+            <div class="py-3 mb-0 small lh-sm border-bottom w-100 text-muted">
+                You are following nobody!
+            </div>
+        </div>
+        <small class="d-block text-end mt-3">
+            <button class="btn btn-sm btn-link" [disabled]="!friends || friends.last" (click)="loadMore()">More Friends</button>
+        </small>
     </div>
 </div>

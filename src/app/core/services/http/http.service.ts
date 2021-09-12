@@ -40,6 +40,14 @@ export class HttpService {
       );
   }
 
+  /** PUT the server */
+  put<T>(url: string, data: any): Observable<any> {
+    return this.http.put(url, data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<T>())
+      );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
