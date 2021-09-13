@@ -1,7 +1,7 @@
-# [Social Media FrontEnd](https://beshambher.github.io/social-media-fe/)
+# [Social Media FrontEnd](https://social-media-beshambher.herokuapp.com/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0. <br>
-The site is published at https://beshambher.github.io/social-media-fe/
+The site is published at https://social-media-beshambher.herokuapp.com/
 
 ## Development server
 
