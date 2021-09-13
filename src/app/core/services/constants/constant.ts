@@ -26,7 +26,7 @@ export abstract class API {
     public static api: string = environment.apiUrl;
     public static base: string = environment.baseHref;
     
-    public static swaggerui: string = API.base + '/swagger-ui';
+    public static swaggerui: string = API.base + '/swagger-ui/';
 
     public static logout: string = API.base + '/logout';
     public static loginGithub: string = API.base + '/oauth2/authorization/github';
