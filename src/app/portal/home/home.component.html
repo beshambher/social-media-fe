@@ -12,8 +12,31 @@
                Social Media: a place to connect with the people you know and share the happiness as the bond grow.
             </p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start py-3">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Get Started</button>
+                <a routerLink="/in" *ngIf="authService.isLoggedIn; else loginBlock" class="btn btn-primary btn-lg px-4 me-md-2">Go to Feeds</a>
+                <ng-template #loginBlock>
+                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" data-bs-toggle="modal" data-bs-target="#loginModal">Get Started</button>
+                </ng-template>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="modal py-5" tabindex="-1" role="dialog" id="loginModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content rounded-5 shadow">
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+          <h2 class="fw-bold mb-0">Sign In</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <hr class="mt-0 mx-5"/>
+        <div class="modal-body p-5 pt-0">
+            <h2 class="fs-5 fw-bold mb-3">Use a third-party</h2>
+            <ng-container *ngFor="let login of loginOptions">
+            <a class="w-100 py-2 mb-2 btn btn-outline-{{login.color}} rounded-4" href="{{login.url}}">
+                <i class="{{login.icon}} me-1"></i> Sign up with {{login.title}}
+            </a>
+            </ng-container>
+        </div>
+      </div>
     </div>
 </div>

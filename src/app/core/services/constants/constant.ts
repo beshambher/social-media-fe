@@ -1,6 +1,34 @@
 import { environment } from "src/environments/environment";
 
+export abstract class API {
+
+    public static api: string = environment.apiUrl;
+    public static base: string = environment.baseHref;
+    
+    public static swaggerui: string = API.base + '/swagger-ui/';
+
+    public static logout: string = API.base + '/logout';
+    public static loginGithub: string = API.base + '/oauth2/authorization/github';
+    public static loginGoogle: string = API.base + '/oauth2/authorization/google';
+    public static session: string = API.api + '/session/user';
+
+    public static posts: string = API.api + '/posts';
+    public static postId: string = API.api + '/posts/{id}';
+    public static postLike: string = API.api + '/posts/{id}/like';
+    
+    public static friends: string = API.api + '/user/friends';
+    public static suggestions: string = API.api + '/user/suggestions';
+    public static follow: string = API.api + '/user/{1}/follow';
+    public static unfollow: string = API.api + '/user/{1}/unfollow';
+
+}
+
 export abstract class Constant {
+
+    public static loginOptions: any[] = [
+        { title: 'Google', icon: 'fab fa-google', url: API.loginGoogle, color: 'primary' },
+        { title: 'GitHub', icon: 'fab fa-github', url: API.loginGithub, color: 'secondary' }
+    ];
 
     public static social: any[] = [
         { title: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/beshambher' },
@@ -18,26 +46,5 @@ export abstract class Constant {
         totalElements: 0,
         numberOfElements: 0
     }
-
-}
-
-export abstract class API {
-
-    public static api: string = environment.apiUrl;
-    public static base: string = environment.baseHref;
-    
-    public static swaggerui: string = API.base + '/swagger-ui/';
-
-    public static logout: string = API.base + '/logout';
-    public static loginGithub: string = API.base + '/oauth2/authorization/github';
-    public static loginGoogle: string = API.base + '/oauth2/authorization/google';
-    public static session: string = API.api + '/session/user';
-
-    public static post: string = API.api + '/posts';
-    
-    public static friends: string = API.api + '/user/friends';
-    public static suggestions: string = API.api + '/user/suggestions';
-    public static follow: string = API.api + '/user/{1}/follow';
-    public static unfollow: string = API.api + '/user/{1}/unfollow';
 
 }
