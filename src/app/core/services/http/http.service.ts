@@ -48,6 +48,14 @@ export class HttpService {
       );
   }
 
+  /** DELETE the server */
+  delete<T>(url: string): Observable<any> {
+    return this.http.delete(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<T>())
+      );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
