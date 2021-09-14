@@ -6,8 +6,20 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="image_src" id="img1" href="./assets/images/social-media-1.jpg">
+
+  <meta property="og:url" content="/" />
+  <meta property="og:title" content="Social Media" />
+  <meta property="og:description" content="Social Media: a place to connect with the people you know and share the happiness as the bond grow.">
+  <meta name="description" content="Social Media: a place to connect with the people you know and share the happiness as the bond grow.">
+  <meta property="og:image" id="img2" content="./assets/images/social-media-1.jpg" />
 </head>
 <body>
   <app-root></app-root>
 </body>
+<script type='text/javascript' data-cfasync='false'>
+  const link = window.location.protocol + "//" + window.location.host + '/assets/images/social-media-1.jpg';
+  document.getElementById('img1').href=link;
+  document.getElementById('img2').content=link;
+</script>
 </html>
