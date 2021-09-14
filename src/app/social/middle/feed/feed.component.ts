@@ -13,11 +13,21 @@ export class FeedComponent implements OnInit {
 
   public user: any;
   public posts: any;
+
+  public editPostId: string;
+  public deletePostId: string;
+
   public postForm: FormGroup;
+  public editPostForm: FormGroup;
 
   constructor(private authService: AuthService, private http: HttpService) {
     this.posts = Constant.defaultPageResponse;
     this.postForm = new FormGroup({
+      body: new FormControl('', Validators.required)
+    });
+    this.editPostId = '';
+    this.deletePostId = '';
+    this.editPostForm = new FormGroup({
       body: new FormControl('', Validators.required)
     });
   }
@@ -27,16 +37,62 @@ export class FeedComponent implements OnInit {
     this.getPosts();
   }
 
+  get smallScreen(): boolean {
+    return window.screen.width <= 576;
+  }
+
   getPosts() {
-    this.http.getList(API.post).subscribe(response => {
+    this.http.getList(API.posts).subscribe(response => {
       this.posts = response;
     });
   }
 
+  loadMore() {
+    this.http.getList(API.posts + '?page=' + (this.posts.number + 1)).subscribe(response => {
+      const previousData: [] = this.posts.content;
+      this.posts = response;
+      this.posts.content = previousData.concat(this.posts.content);
+    });
+  }
+
   postStatus() {
-    this.http.post(API.post, this.postForm.value).subscribe(response => {
+    this.http.post(API.posts, this.postForm.value).subscribe(response => {
       this.getPosts();
       this.postForm.reset();
+    });
+  }
+
+  editPost(post: any) {
+    this.editPostId = post.id;
+    this.editPostForm.get('body')?.setValue(post.body);
+  }
+
+  editPostStatus(id: string) {
+    this.http.put(API.postId.replace('{id}', id), this.editPostForm.value).subscribe(response => {
+      this.posts.content.find((p: any) => p.id == id).body = this.editPostForm.value.body;
+      this.editPostForm.reset();
+    });
+    this.editPostId = '';
+  }
+
+  deletePost($event: any) {
+    this.deletePostId = $event.relatedTarget.getAttribute('data-bs-id');
+  }
+
+  deletePostStatus() {
+    const id = this.deletePostId;
+    this.http.delete(API.postId.replace('{id}', id)).subscribe(response => {
+      const index = this.posts.content.findIndex((p: any) => p.id == id);
+      this.posts.content.splice(index, 1);
+      this.posts.content = this.posts.content;
+    });
+    this.deletePostId = '';
+  }
+
+  togglePostLike(id: string) {
+    this.http.put(API.postLike.replace('{id}', id), this.editPostForm.value).subscribe(response => {
+      const index = this.posts.content.findIndex((p: any) => p.id == id);
+      this.posts.content[index] = response;
     });
   }
 
