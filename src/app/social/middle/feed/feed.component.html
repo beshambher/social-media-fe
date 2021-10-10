@@ -50,11 +50,12 @@
                         <app-text-area [editForm]="editPostForm" [editFormData]="editPostFormData" (update)="editPostStatus($event, post.id)" (cancel)="editPostId=''"></app-text-area>
                     </ng-template>
                     <button class="btn btn-sm btn-primary me-2" (click)="togglePostLike(post.id)"><i class="fas fa-thumbs-up"></i> Like</button>
-                    <button class="btn btn-sm btn-primary disabled"><i class="fas fa-comment"></i> Comment</button>
+                    <button class="btn btn-sm btn-primary" (click)="togglePostComment(post.id)"><i class="fas fa-comment"></i> Comment</button>
                     <div class="text-muted d-inline float-end">
                         <small class="me-1">{{post.likes | itos}} like{{post.likes==1?'':'s'}}</small>
                         <small>{{post.commentsCount | itos}} comment{{post.commentsCount==1?'':'s'}}</small>
                     </div>
+                    <app-comment *ngIf="editPostCommentId==post.id" [post]="post" (success)="updateCommentCount(post.id)"></app-comment>
                 </div>
             </div>
         </ng-container>

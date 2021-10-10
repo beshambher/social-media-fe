@@ -15,6 +15,8 @@ export abstract class API {
     public static posts: string = API.api + '/posts';
     public static postId: string = API.api + '/posts/{id}';
     public static postLike: string = API.api + '/posts/{id}/like';
+    public static comments: string = API.api + '/comments';
+    public static postComments: string = API.api + '/post/{id}/comments';
     
     public static friends: string = API.api + '/user/friends';
     public static suggestions: string = API.api + '/user/suggestions';
@@ -45,6 +47,14 @@ export abstract class Constant {
         totalPages: 1,
         totalElements: 0,
         numberOfElements: 0
-    }
+    };
+
+    public static defaultTextAreaData = {
+        formControls: [
+          { name: 'body', id: '', label: 'Body', placeholder: 'Body' }
+        ],
+        save: { label: 'Update' },
+        cancel: { label: 'Cancel' }
+    };
 
 }

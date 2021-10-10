@@ -16,6 +16,7 @@ export class FeedComponent implements OnInit {
 
   public editPostId: string;
   public deletePostId: string;
+  public editPostCommentId: string;
 
   public postForm: FormGroup;
   public editPostForm: FormGroup;
@@ -28,6 +29,7 @@ export class FeedComponent implements OnInit {
     });
     this.editPostId = '';
     this.deletePostId = '';
+    this.editPostCommentId = '';
     this.editPostForm = new FormGroup({
       body: new FormControl('', Validators.required)
     });
@@ -100,6 +102,15 @@ export class FeedComponent implements OnInit {
       const index = this.posts.content.findIndex((p: any) => p.id == id);
       this.posts.content[index] = response;
     });
+  }
+
+  togglePostComment(id: string) {
+    this.editPostCommentId = (this.editPostCommentId == id) ? '' : id;
+  }
+
+  updateCommentCount(id: string) {
+    const index = this.posts.content.findIndex((p: any) => p.id == id);
+    this.posts.content[index].commentsCount++;
   }
 
 }
