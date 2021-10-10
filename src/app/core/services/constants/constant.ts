@@ -16,6 +16,7 @@ export abstract class API {
     public static postId: string = API.api + '/posts/{id}';
     public static postLike: string = API.api + '/posts/{id}/like';
     public static comments: string = API.api + '/comments';
+    public static commentId: string = API.api + '/comments/{id}';
     public static postComments: string = API.api + '/post/{id}/comments';
     
     public static friends: string = API.api + '/user/friends';

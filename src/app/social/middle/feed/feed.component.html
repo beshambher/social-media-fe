@@ -55,7 +55,7 @@
                         <small class="me-1">{{post.likes | itos}} like{{post.likes==1?'':'s'}}</small>
                         <small>{{post.commentsCount | itos}} comment{{post.commentsCount==1?'':'s'}}</small>
                     </div>
-                    <app-comment *ngIf="editPostCommentId==post.id" [post]="post" (success)="updateCommentCount(post.id)"></app-comment>
+                    <app-comment *ngIf="editPostCommentId==post.id" [post]="post" (success)="updateCommentCount(post.id, $event)"></app-comment>
                 </div>
             </div>
         </ng-container>

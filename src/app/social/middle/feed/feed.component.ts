@@ -108,9 +108,9 @@ export class FeedComponent implements OnInit {
     this.editPostCommentId = (this.editPostCommentId == id) ? '' : id;
   }
 
-  updateCommentCount(id: string) {
+  updateCommentCount(id: string, $event: number) {
     const index = this.posts.content.findIndex((p: any) => p.id == id);
-    this.posts.content[index].commentsCount++;
+    this.posts.content[index].commentsCount += $event;
   }
 
 }
