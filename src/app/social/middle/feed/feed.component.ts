@@ -19,6 +19,7 @@ export class FeedComponent implements OnInit {
 
   public postForm: FormGroup;
   public editPostForm: FormGroup;
+  public editPostFormData: any;
 
   constructor(private authService: AuthService, private http: HttpService) {
     this.posts = Constant.defaultPageResponse;
@@ -30,6 +31,10 @@ export class FeedComponent implements OnInit {
     this.editPostForm = new FormGroup({
       body: new FormControl('', Validators.required)
     });
+    this.editPostFormData = Constant.defaultTextAreaData;
+    this.editPostFormData.formControls = [
+      { name: 'body', id: 'editpostarea', label: 'Edit post', placeholder: 'You can\'t leave it empty!' }
+    ];
   }
 
   ngOnInit(): void {
@@ -67,9 +72,10 @@ export class FeedComponent implements OnInit {
     this.editPostForm.get('body')?.setValue(post.body);
   }
 
-  editPostStatus(id: string) {
-    this.http.put(API.postId.replace('{id}', id), this.editPostForm.value).subscribe(response => {
-      this.posts.content.find((p: any) => p.id == id).body = this.editPostForm.value.body;
+  editPostStatus($event: any, id: string) {
+    if (!$event) return;
+    this.http.put(API.postId.replace('{id}', id), $event).subscribe(response => {
+      this.posts.content.find((p: any) => p.id == id).body = $event.body;
       this.editPostForm.reset();
     });
     this.editPostId = '';

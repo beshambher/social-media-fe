@@ -47,19 +47,7 @@
                 <div class="card-body pt-2">
                     <p *ngIf="editPostId!=post.id; else editPostFormBlock" class="card-text">{{post.body}}</p>
                     <ng-template #editPostFormBlock>
-                        <form [formGroup]="editPostForm">
-                            <div class="form-floating">
-                                <textarea formControlName="body" class="form-control h-auto" placeholder="You can't leave it empty!" id="editpostarea" rows="3"></textarea>
-                                <label for="editpostarea" [hidden]="!editPostForm.valid">Edit post</label>
-                                <label for="editpostarea" [hidden]="editPostForm.valid">You can't leave it empty!</label>
-                            </div>
-                            <button type="button" class="btn btn-sm btn-primary my-2" [disabled]="!editPostForm.valid" (click)="editPostStatus(post.id)">
-                                <i class="fas fa-pencil-alt"></i> Update
-                            </button>
-                            <button type="button" class="btn btn-sm btn-secondary m-2" (click)="editPostId=''">
-                                <i class="fas fa-times"></i> Cancel
-                            </button>
-                        </form>
+                        <app-text-area [editForm]="editPostForm" [editFormData]="editPostFormData" (update)="editPostStatus($event, post.id)" (cancel)="editPostId=''"></app-text-area>
                     </ng-template>
                     <button class="btn btn-sm btn-primary me-2" (click)="togglePostLike(post.id)"><i class="fas fa-thumbs-up"></i> Like</button>
                     <button class="btn btn-sm btn-primary disabled"><i class="fas fa-comment"></i> Comment</button>

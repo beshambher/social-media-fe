@@ -1,0 +1,15 @@
+<form [formGroup]="editForm">
+    <div class="form-floating">
+        <ng-container *ngFor="let control of editFormData.formControls">
+            <textarea formControlName="{{control.name}}" class="form-control h-auto" placeholder="{{control.placeholder}}" id="{{control.id}}" rows="3"></textarea>
+            <label for="{{control.id}}" [hidden]="!editForm.valid">{{control.label}}</label>
+            <label for="{{control.id}}" [hidden]="editForm.valid">{{control.placeholder}}</label>
+        </ng-container>
+    </div>
+    <button type="button" class="btn btn-sm btn-primary my-2" [disabled]="!editForm.valid" (click)="updateClick()">
+        <i class="fas fa-pencil-alt"></i> {{editFormData.save.label}}
+    </button>
+    <button type="button" class="btn btn-sm btn-secondary m-2" (click)="cancelClick()">
+        <i class="fas fa-times"></i> {{editFormData.cancel.label}}
+    </button>
+</form>
