@@ -1,0 +1,16 @@
+<div class="modal" id="{{deleteData.id}}" tabindex="-1" role="dialog" (show.bs.modal)="showBsModalEvent($event)">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-body py-3 px-4 text-center">
+              <h5 class="mb-2">Delete?</h5>
+              <p class="mb-0">Are you sure you want to this {{deleteData.item}}?</p>
+            </div>
+            <div class="modal-footer flex-nowrap p-0">
+              <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none text-danger col-6 m-0 rounded-0 border-end" data-bs-dismiss="modal" (click)="deleteClick()">
+                  <strong>Yes, delete</strong>
+                </button>
+              <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

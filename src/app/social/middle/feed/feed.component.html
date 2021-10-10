@@ -71,26 +71,11 @@
             </div>
         </ng-container>
         <!-- virtual infinit pagination -->
-        <small class="d-block text-center mt-1" *ngIf="posts && !posts.last" >
+        <small class="d-block text-center mt-2" *ngIf="posts && !posts.last" >
             <button class="btn btn-sm btn-outline-primary" (click)="loadMore()">See More Posts</button>
         </small>
         <!-- delete confirm modal -->
-        <div class="modal" id="deleteModal" tabindex="-1" role="dialog" (show.bs.modal)="deletePost($event)">
-            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                <div class="modal-content rounded-4 shadow">
-                    <div class="modal-body py-3 px-4 text-center">
-                      <h5 class="mb-2">Delete?</h5>
-                      <p class="mb-0">Are you sure you want to this post?</p>
-                    </div>
-                    <div class="modal-footer flex-nowrap p-0">
-                      <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none text-danger col-6 m-0 rounded-0 border-end" data-bs-dismiss="modal" (click)="deletePostStatus()">
-                          <strong>Yes, delete</strong>
-                        </button>
-                      <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 m-0 rounded-0" data-bs-dismiss="modal">No cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <app-delete-modal [deleteData]="{id: 'deleteModal', item: 'post'}" (showBsModal)="deletePost($event)" (delete)="deletePostStatus()"></app-delete-modal>
         <div class="mt-2"></div>
     </div>
     <div class="col-md-3">

@@ -8,6 +8,7 @@ import { LeftSidebarComponent } from './left/left-sidebar/left-sidebar.component
 import { RightSidebarComponent } from './right/right-sidebar/right-sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { DeleteModalComponent } from './middle/partials/delete-modal/delete-modal.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
     SocialComponent,
     FeedComponent,
     LeftSidebarComponent,
-    RightSidebarComponent
+    RightSidebarComponent,
+    DeleteModalComponent
   ],
   imports: [
     CommonModule,
