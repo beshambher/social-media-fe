@@ -6,7 +6,8 @@ import { HttpService } from 'src/app/core/services/http/http.service';
 @Component({
   selector: 'app-right-sidebar',
   templateUrl: './right-sidebar.component.html',
-  styleUrls: ['./right-sidebar.component.css']
+  styleUrls: ['./right-sidebar.component.css'],
+  standalone: false
 })
 export class RightSidebarComponent implements OnInit {
 

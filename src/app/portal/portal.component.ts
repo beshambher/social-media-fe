@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
       <router-outlet></router-outlet>
     </div>
   `,
-  styles: []
+  styles: [],
+  standalone: false
 })
 export class PortalComponent implements OnInit {
 

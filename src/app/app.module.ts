@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule, inject, provideAppInitializer } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +17,10 @@ import { SharedModule } from './shared/shared.module';
     SharedModule
   ],
   providers: [
-    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true },
+    provideAppInitializer(() => {
+      const initializerFn = (initializeApp)(inject(AppInitService));
+      return initializerFn();
+    }),
     provideHttpClient(withInterceptorsFromDi())
   ],
   bootstrap: [AppComponent],

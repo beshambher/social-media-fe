@@ -6,7 +6,8 @@ import { HttpService } from 'src/app/core/services/http/http.service';
 @Component({
   selector: 'app-left-sidebar',
   templateUrl: './left-sidebar.component.html',
-  styleUrls: ['./left-sidebar.component.css']
+  styleUrls: ['./left-sidebar.component.css'],
+  standalone: false
 })
 export class LeftSidebarComponent implements OnInit {
 

@@ -7,7 +7,8 @@ import { HttpService } from 'src/app/core/services/http/http.service';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.css']
+  styleUrls: ['./feed.component.css'],
+  standalone: false
 })
 export class FeedComponent implements OnInit {
 
