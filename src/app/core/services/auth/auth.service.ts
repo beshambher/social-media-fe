@@ -38,7 +38,7 @@ export class AuthService {
     return user ? (user.firstName + ' ' + user.lastName) : '';
   }
 
-  get userAvatar(): boolean {
+  get userAvatar(): string {
     return this.getUser() ? this.getUser().avatar : '';
   }
 

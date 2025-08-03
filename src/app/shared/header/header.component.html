@@ -1,57 +1,58 @@
 <header class="p-3 border-bottom">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">      
-            <img
-                width="40"
-                alt="Angular Logo"
-                src="./assets/images/logo.png"
-            />
-        </a>
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+        <img
+          width="40"
+          alt="Angular Logo"
+          src="./assets/images/logo.png"
+          />
+      </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li *ngFor="let nav of navigation">
-                <a routerLink="{{nav.url}}" class="nav-link px-2 link-dark">{{nav.title}}</a>
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        @for (nav of navigation; track nav) {
+          <li>
+            <a routerLink="{{nav.url}}" class="nav-link px-2 link-dark">{{nav.title}}</a>
+          </li>
+        }
+      </ul>
+
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      </form>
+
+      @if (authService.isLoggedIn) {
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img alt="{{authService.fullName}}" src="{{authService.userAvatar}}" width="32" height="32" class="rounded-circle">
+            {{authService.firstName}}
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            @if (authService.isAdmin) {
+              <li><a class="dropdown-item" href="/social/swagger-ui/"><i class="fas fa-book"></i> Swagger API Docs</a></li>
+              <li><hr class="dropdown-divider"></li>
+            }
+            <li>
+              <form action="/social/logout" method="post">
+                <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sign out</button>
+              </form>
             </li>
-        </ul>
+          </ul>
+        </div>
+      } @else {
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user"></i> Sign In
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="/social/oauth2/authorization/github"><i class="fab fa-github"></i> GitHub</a></li>
+            <li><a class="dropdown-item" href="/social/oauth2/authorization/google"><i class="fab fa-google"></i> Google</a></li>
+          </ul>
+        </div>
+      }
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-        </form>
-
-        <ng-container *ngIf="authService.isLoggedIn; else loginBlock">
-            <div class="dropdown text-end">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img alt="{{authService.fullName}}" src="{{authService.userAvatar}}" width="32" height="32" class="rounded-circle">
-                    {{authService.firstName}}
-                </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <ng-container *ngIf="authService.isAdmin">
-                        <li><a class="dropdown-item" href="/social/swagger-ui/"><i class="fas fa-book"></i> Swagger API Docs</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                    </ng-container>
-                    <li>
-                        <form action="/social/logout" method="post">
-                            <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sign out</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </ng-container>
-
-        <ng-template #loginBlock>
-            <div class="dropdown text-end">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user"></i> Sign In
-                </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="/social/oauth2/authorization/github"><i class="fab fa-github"></i> GitHub</a></li>
-                    <li><a class="dropdown-item" href="/social/oauth2/authorization/google"><i class="fab fa-google"></i> Google</a></li>
-                </ul>
-            </div>
-        </ng-template>
-      </div>
     </div>
+  </div>
 </header>

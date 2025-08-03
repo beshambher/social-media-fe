@@ -1,41 +1,44 @@
 <div class="card rounded-3 border shadow-lg">
-    <div class="card-body">
-        <h5 class="card-title text-center">My Profile</h5>
-        <img [src]="user.avatar" class="img-thumbnail rounded-circle d-block mx-auto" alt="{{user.username}}">
-        <div class="card-text mt-2 border-top">
-            <ul class="list-group">
-                <li class="list-group-item border-0"><i class="fa fa-user pe-2"></i> {{user.firstName}} {{user.lastName}}</li>
-                <li class="list-group-item border-0"><i class="fas fa-pencil-alt pe-2"></i> {{user.username}}</li>
-                <li class="list-group-item border-0"><i class="far fa-envelope pe-2"></i> {{user.email}}</li>
-                <li class="list-group-item border-0"><i class="fas fa-home pe-2"></i> {{user.location}}</li>
-            </ul>
-        </div>
+  <div class="card-body">
+    <h5 class="card-title text-center">My Profile</h5>
+    <img [src]="user.avatar" class="img-thumbnail rounded-circle d-block mx-auto" alt="{{user.username}}">
+    <div class="card-text mt-2 border-top">
+      <ul class="list-group">
+        <li class="list-group-item border-0"><i class="fa fa-user pe-2"></i> {{user.firstName}} {{user.lastName}}</li>
+        <li class="list-group-item border-0"><i class="fas fa-pencil-alt pe-2"></i> {{user.username}}</li>
+        <li class="list-group-item border-0"><i class="far fa-envelope pe-2"></i> {{user.email}}</li>
+        <li class="list-group-item border-0"><i class="fas fa-home pe-2"></i> {{user.location}}</li>
+      </ul>
     </div>
+  </div>
 </div>
 
 <div class="card rounded-3 border shadow-lg my-2">
-    <div class="card-body">
-        <h5 class="card-title text-center pb-2 border-bottom">Following</h5>
-        <div class="d-flex align-items-center" *ngFor="let user of friends.content">
-            <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}" />
-
-            <div class="py-2 mb-0 small lh-sm border-bottom w-100">
-                <div class="d-flex justify-content-between">
-                    <strong class="text-gray-dark">{{user.firstName}} {{user.lastName}}</strong>
-                    <a routerLink="#" class="text-decoration-none" (click)="unfollowUser(user.username)">
-                        <i class="fas fa-trash"></i> Unfollow
-                    </a>
-                </div>
-                <span class="text-muted d-block">{{user.username}}</span>
-            </div>
+  <div class="card-body">
+    <h5 class="card-title text-center pb-2 border-bottom">Following</h5>
+    @for (user of friends.content; track user) {
+      <div class="d-flex align-items-center">
+        <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}" />
+        <div class="py-2 mb-0 small lh-sm border-bottom w-100">
+          <div class="d-flex justify-content-between">
+            <strong class="text-gray-dark">{{user.firstName}} {{user.lastName}}</strong>
+            <a routerLink="#" class="text-decoration-none" (click)="unfollowUser(user.username)">
+              <i class="fas fa-trash"></i> Unfollow
+            </a>
+          </div>
+          <span class="text-muted d-block">{{user.username}}</span>
         </div>
-        <div class="d-flex" *ngIf="!friends || !friends.content.length">
-            <div class="py-3 mb-0 small lh-sm border-bottom w-100 text-muted">
-                You are following nobody!
-            </div>
+      </div>
+    }
+    @if (!friends || !friends.content.length) {
+      <div class="d-flex">
+        <div class="py-3 mb-0 small lh-sm border-bottom w-100 text-muted">
+          You are following nobody!
         </div>
-        <small class="d-block text-end mt-3">
-            <button class="btn btn-sm btn-link" [disabled]="!friends || friends.last" (click)="loadMore()">More Friends</button>
-        </small>
-    </div>
+      </div>
+    }
+    <small class="d-block text-end mt-3">
+      <button class="btn btn-sm btn-link" [disabled]="!friends || friends.last" (click)="loadMore()">More Friends</button>
+    </small>
+  </div>
 </div>
