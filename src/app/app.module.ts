@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,12 +14,12 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     SharedModule
   ],
   providers: [
-    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true}
+    { provide: APP_INITIALIZER, useFactory: initializeApp, deps: [AppInitService], multi: true },
+    provideHttpClient(withInterceptorsFromDi())
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
