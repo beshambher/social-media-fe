@@ -24,15 +24,19 @@ export abstract class Constant {
 export abstract class API {
 
     public static base: string = environment.apiUrl;
-    
-    public static post: string = API.base + '/posts';
+
+    public static post: string = API.base + '/social/posts';
+
+    public static swagger: string = API.base + '/swagger-ui';
 
     public static logout: string = API.base + '/logout';
-    public static session: string = API.base + '/session/user';
-    
-    public static friends: string = API.base + '/user/friends';
-    public static suggestions: string = API.base + '/user/suggestions';
-    public static follow: string = API.base + '/user/{1}/follow';
-    public static unfollow: string = API.base + '/user/{1}/unfollow';
+    public static github: string = API.base + '/oauth2/authorization/github';
+    public static google: string = API.base + '/oauth2/authorization/google';
+    public static session: string = API.base + '/social/session/user';
+
+    public static friends: string = API.base + '/social/user/friends';
+    public static suggestions: string = API.base + '/social/user/suggestions';
+    public static follow: string = API.base + '/social/user/{1}/follow';
+    public static unfollow: string = API.base + '/social/user/{1}/unfollow';
 
 }

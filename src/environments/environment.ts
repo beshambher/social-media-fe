@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: '/social'
+  apiUrl: 'http://localhost:8080'
 };
 
 /*
