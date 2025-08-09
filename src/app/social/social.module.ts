@@ -5,6 +5,7 @@ import { SocialRoutingModule } from './social-routing.module';
 import { SocialComponent } from './social.component';
 import { FeedComponent } from './middle/feed/feed.component';
 import { PostComponent } from './middle/post/post.component';
+import { CommentsComponent } from './middle/comments/comments.component';
 import { LeftSidebarComponent } from './left/left-sidebar/left-sidebar.component';
 import { RightSidebarComponent } from './right/right-sidebar/right-sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SocialComponent,
     FeedComponent,
     PostComponent,
+    CommentsComponent,
     LeftSidebarComponent,
     RightSidebarComponent
   ],

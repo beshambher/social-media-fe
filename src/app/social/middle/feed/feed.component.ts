@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { API, Constant } from 'src/app/core/services/constants/constant';
 import { HttpService } from 'src/app/core/services/http/http.service';
+import { API, Constant } from 'src/app/core/services/constants/constant';
 
 @Component({
   selector: 'app-feed',
@@ -19,7 +19,7 @@ export class FeedComponent implements OnInit {
   constructor(private authService: AuthService, private http: HttpService) {
     this.posts = Constant.defaultPageResponse;
     this.postForm = new FormGroup({
-      body: new FormControl('', Validators.required)
+      body: new FormControl('', [Validators.required, Validators.maxLength(4096)])
     });
   }
 
@@ -34,7 +34,7 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  postStatus() {
+  addPost() {
     this.http.post(API.post, this.postForm.value).subscribe(response => {
       this.getPosts();
       this.postForm.reset();

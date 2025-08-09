@@ -1,19 +1,26 @@
 <div class="card mt-2 rounded-3 border shadow-lg">
-  <div class="row g-0">
-    <div class="col-2 p-1 p-md-2">
-      <img [src]="post.user.avatar" class="img-thumbnail rounded-circle border-0" alt="{{post.user.username}}"/>
+  <div class="row g-0 align-items-center">
+    <div class="col-2">
+      <img [src]="post.user.avatar" class="img-thumbnail rounded-circle border-0 p-xl-3 p-xs-2" alt="{{post.user.username}}"/>
     </div>
-    <div class="col-8 my-auto">
+    <div class="col my-auto ps-xl-1 ps-2">
       <h6 class="mb-0">{{post.user.username}}</h6>
-      <small class="text-muted">{{post.createdAt | date:'MMM d, y, h:mm a'}}</small>
+      <small class="text-muted ms-auto">{{post.createdAt | date:'MMM d, y h:mm a'}}</small>
     </div>
+    @if (post.user.username == user.username) {
+      <div class="col-auto my-auto d-flex justify-content-end">
+        <button class="btn btn-sm btn-outline-danger me-2 me-md-3" type="button" (click)="deletePost()">
+          <i class="fas fa-trash-alt"></i> Delete
+        </button>
+      </div>
+    }
   </div>
   <div class="card-body pt-2">
     <p class="card-text">{{post.body}}</p>
-    <button class="btn btn-primary me-2" [disabled]="inProgress" (click)="likePost()">
+    <button class="btn btn-sm btn-primary me-2" type="button" [disabled]="inProgress" (click)="likePost()">
       <i [class]="inProgress ? 'fas fa-spinner fa-spin' : 'fas fa-thumbs-up'"></i>
-      Like ({{post.likes}})
+      Likes ({{post.likes}})
     </button>
-    <a href="#" class="btn btn-primary"><i class="fas fa-comment"></i> Comment ({{post.commentsCount}})</a>
+    <app-comments [post]="post"></app-comments>
   </div>
 </div>

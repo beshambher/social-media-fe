@@ -1,0 +1,57 @@
+<button class="btn btn-sm btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        aria-expanded="false"
+        [attr.data-bs-target]="'#post-' + post.id + '-comments'"
+        [attr.aria-controls]="'post-' + post.id + '-comments'"
+        [disabled]="inProgress"
+        (click)="loadComments($event)">
+  <i [class]="inProgress ? 'fas fa-spinner fa-spin' : 'fas fa-comment'"></i>
+  Comments ({{post.commentsCount}})</button>
+
+<div class="collapse" id="post-{{post.id}}-comments">
+
+  <div class="d-flex align-items-center mt-3 mb-2">
+    <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}" />
+    <form [formGroup]="commentForm" class="row py-2 mb-0 small lh-sm border-bottom w-100">
+      <div class="col form-floating pe-0">
+        <textarea formControlName="comment" class="form-control h-auto" placeholder="What do you think about this post?"
+                  id="comment-area" rows="1" maxlength="2550"></textarea>
+        <label for="comment-area" class="mx-2 text-secondary">What do you think about this post?</label>
+      </div>
+      <div class="col-auto d-flex align-items-center">
+        <button type="button" class="btn btn-sm btn-primary" [disabled]="!commentForm.valid || addingComment" (click)="addComment()">
+          <i [class]="addingComment ? 'fas fa-spinner fa-spin' : 'fas fa-pencil-alt'"></i> Comment
+        </button>
+      </div>
+    </form>
+  </div>
+
+  @for (comment of comments; track comment.id) {
+    <div class="d-flex align-items-center">
+      <img [src]="comment.user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{comment.user.username}}" />
+      <div class="py-2">
+        <div class="row small lh-sm">
+          <div class="col">
+            <strong>{{comment.user.username}}</strong>
+          </div>
+          <div class="col">
+            <small class="text-muted float-end">{{comment.createdAt | date:'MMM d, y h:mm a'}}</small>
+          </div>
+        </div>
+        <div class="row small lh-sm border-bottom py-2">
+          <div class="col pe-0">
+            <span>{{comment.comment}}</span>
+          </div>
+          @if (comment.user.username == user.username) {
+          <div class="col-auto my-auto">
+            <button class="btn btn-sm btn-outline-danger" type="button" (click)="deleteComment(comment.id)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

@@ -7,10 +7,11 @@
       <div class="card-body">
         <form [formGroup]="postForm">
           <div class="form-floating">
-            <textarea formControlName="body" class="form-control h-auto" placeholder="Something's on your mind?" id="postarea" rows="3"></textarea>
-            <label for="postarea">Something's on your mind?</label>
+            <textarea formControlName="body" class="form-control h-auto" placeholder="Something's on your mind?"
+                      id="post-area" rows="3" maxlength="4096"></textarea>
+            <label for="post-area">Something's on your mind?</label>
           </div>
-          <button type="button" class="btn btn-primary mt-2" [disabled]="!postForm.valid" (click)="postStatus()">
+          <button type="button" class="btn btn-primary mt-2 d-flex ms-auto" [disabled]="!postForm.valid" (click)="addPost()">
             <i class="fas fa-pencil-alt"></i> Post
           </button>
         </form>
