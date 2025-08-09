@@ -40,5 +40,4 @@ export class FeedComponent implements OnInit {
       this.postForm.reset();
     });
   }
-
 }

@@ -26,6 +26,7 @@ export abstract class API {
     public static base: string = environment.apiUrl;
 
     public static post: string = API.base + '/social/posts';
+    public static like: string = API.base + '/social/posts/{1}/like';
 
     public static swagger: string = API.base + '/swagger-ui';
 
