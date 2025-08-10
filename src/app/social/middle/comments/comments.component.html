@@ -30,7 +30,7 @@
   @for (comment of comments; track comment.id) {
     <div class="d-flex align-items-center">
       <img [src]="comment.user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{comment.user.username}}" />
-      <div class="py-2">
+      <div class="w-100 py-2">
         <div class="row small lh-sm">
           <div class="col">
             <strong>{{comment.user.username}}</strong>

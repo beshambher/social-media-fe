@@ -1,22 +1,22 @@
-<div class="card mt-2 rounded-3 border shadow-lg">
-  <div class="row g-0 align-items-center">
-    <div class="col-2">
-      <img [src]="post.user.avatar" class="img-thumbnail rounded-circle border-0 p-xl-3 p-xs-2" alt="{{post.user.username}}"/>
-    </div>
-    <div class="col my-auto ps-xl-1 ps-2">
-      <h6 class="mb-0">{{post.user.username}}</h6>
-      <small class="text-muted ms-auto">{{post.createdAt | date:'MMM d, y h:mm a'}}</small>
-    </div>
-    @if (post.user.username == user.username) {
+<div class="card rounded-3 border shadow-lg mt-2">
+  <div class="card-body">
+    <div class="row g-0 align-items-center">
+      <div class="col-2">
+        <img [src]="post.user.avatar" class="img-thumbnail rounded-circle border-0 p-xl-3 p-xs-2" alt="{{post.user.username}}"/>
+      </div>
+      <div class="col my-auto ps-xl-1 ps-2">
+        <h6 class="mb-0">{{post.user.username}}</h6>
+        <small class="text-muted ms-auto">{{post.createdAt | date:'MMM d, y h:mm a'}}</small>
+      </div>
+      @if (post.user.username == user.username) {
       <div class="col-auto my-auto d-flex justify-content-end">
-        <button class="btn btn-sm btn-outline-danger me-2 me-md-3" type="button" (click)="deletePost()">
+        <button class="btn btn-sm btn-outline-danger me-2 me-md-3" type="button" (click)="confirmDeletePost()">
           <i class="fas fa-trash-alt"></i> Delete
         </button>
       </div>
-    }
-  </div>
-  <div class="card-body pt-2">
-    <p class="card-text">{{post.body}}</p>
+      }
+    </div>
+    <p class="card-text pt-2">{{post.body}}</p>
     <button class="btn btn-sm btn-primary me-2" type="button" [disabled]="inProgress" (click)="likePost()">
       <i [class]="inProgress ? 'fas fa-spinner fa-spin' : 'fas fa-thumbs-up'"></i>
       Likes ({{post.likes}})

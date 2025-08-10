@@ -27,12 +27,11 @@ export class HttpService {
   getList<T>(url: string): Observable<any> {
     return this.http.get(url, this.httpOptions)
       .pipe(
-        // tap(_ => console.log('fetched')),
         catchError(this.handleError<T>())
       );
   }
 
-  /** POST the server */
+  /** POST a resource to the server */
   post<T>(url: string, data: any): Observable<any> {
     return this.http.post(url, data, this.httpOptions)
       .pipe(
@@ -40,7 +39,7 @@ export class HttpService {
       );
   }
 
-  /** PUT the server */
+  /** PUT a resource on the server */
   put<T>(url: string, data: any): Observable<any> {
     return this.http.put(url, data, this.httpOptions)
       .pipe(

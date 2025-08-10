@@ -25,7 +25,8 @@ export abstract class API {
 
     public static base: string = environment.apiUrl;
 
-    public static post: string = API.base + '/social/posts';
+    public static posts: string = API.base + '/social/posts';
+    public static post: string = API.base + '/social/posts/{1}';
     public static like: string = API.base + '/social/posts/{1}/like';
     public static comments: string = API.base + '/social/comments';
     public static postComments: string = API.base + '/social/posts/{1}/comments';

@@ -29,13 +29,13 @@ export class FeedComponent implements OnInit {
   }
 
   getPosts() {
-    this.http.getList(API.post).subscribe(response => {
+    this.http.getList(API.posts).subscribe(response => {
       this.posts = response;
     });
   }
 
   addPost() {
-    this.http.post(API.post, this.postForm.value).subscribe(response => {
+    this.http.post(API.posts, this.postForm.value).subscribe(response => {
       this.getPosts();
       this.postForm.reset();
     });
