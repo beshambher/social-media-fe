@@ -1,0 +1,26 @@
+<div class="modal fade" id="appConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="appConfirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        @if (popupConfig) {
+          <div class="modal-header" [class]="getPopupHeaderClass(popupConfig.type)">
+            <h5 class="modal-title" id="appConfirmModalLabel">
+              {{ popupConfig.title }}
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" (click)="onCancel($event)"></button>
+          </div>
+          <div class="modal-body">
+            {{ popupConfig.message }}
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="modalCancel" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onCancel($event)">
+                {{ popupConfig.cancelButtonText || 'Cancel' }}
+            </button>
+            <button type="button" id="modalConfirm" class="btn btn-danger" (click)="onConfirm($event)">
+                {{ popupConfig.confirmButtonText || 'Confirm' }}
+            </button>
+          </div>
+        }
+      </div>
+  </div>
+</div>
