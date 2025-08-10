@@ -42,4 +42,8 @@ export class FeedComponent implements OnInit {
       this.postForm.reset();
     });
   }
+
+  onPostDeleted(deletedPostId: string): void {
+    this.posts.content = this.posts.content.filter((p: Post) => p.id !== deletedPostId);
+  }
 }

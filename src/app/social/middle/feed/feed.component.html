@@ -18,7 +18,7 @@
       </div>
     </div>
     @for (post of posts.content; track post.id) {
-      <app-post [post]="post"></app-post>
+      <app-post [post]="post" (postDeleted)="onPostDeleted($event)"></app-post>
     }
     <div class="mt-2"></div>
   </div>
