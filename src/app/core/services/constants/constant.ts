@@ -55,4 +55,6 @@ export abstract class API {
     public static follow: string = API.base + '/social/user/{1}/follow';
     public static unfollow: string = API.base + '/social/user/{1}/unfollow';
 
+    public static contactUs: string = 'https://formspree.io/f/mdoypowv';
+
 }

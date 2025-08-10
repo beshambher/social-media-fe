@@ -11,7 +11,7 @@ import { API } from 'src/app/core/services/constants/constant';
 export class HeaderComponent implements OnInit {
 
   public navigation: any[] = [];
-  public api = API
+  public api = API;
 
   constructor(public authService: AuthService) {
     this.navigation = [

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { API } from 'src/app/core/services/constants/constant';
 
 @Component({
   selector: 'app-contact',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   standalone: false
 })
 export class ContactComponent implements OnInit {
+
+  public api = API;
 
   constructor() { }
 
