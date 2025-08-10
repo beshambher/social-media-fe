@@ -1,2 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
+.mxh-300px { max-height: 300px; }
+.mxh-500px { max-height: 500px; }

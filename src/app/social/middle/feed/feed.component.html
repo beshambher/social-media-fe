@@ -10,6 +10,9 @@
             <textarea formControlName="body" class="form-control h-auto" placeholder="Something's on your mind?"
                       id="post-area" rows="3" maxlength="4096"></textarea>
             <label for="post-area">Something's on your mind?</label>
+            <span class="text-muted small position-absolute bottom-0 end-0 me-2 mb-1">
+              <small>{{ postForm.get('body')?.value?.length || 0 }}/4096</small>
+            </span>
           </div>
           <button type="button" class="btn btn-primary mt-2 float-end" [disabled]="!postForm.valid" (click)="addPost()">
             <i class="fas fa-pencil-alt"></i> Post

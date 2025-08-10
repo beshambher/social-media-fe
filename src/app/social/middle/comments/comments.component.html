@@ -16,8 +16,11 @@
     <form [formGroup]="commentForm" class="row py-2 mb-0 small lh-sm border-bottom w-100">
       <div class="col form-floating pe-0">
         <textarea formControlName="comment" class="form-control h-auto" placeholder="What do you think about this post?"
-                  id="comment-area" rows="1" maxlength="2550"></textarea>
+                  id="comment-area" rows="1" maxlength="255"></textarea>
         <label for="comment-area" class="mx-2 text-secondary">What do you think about this post?</label>
+        <span class="text-muted small position-absolute bottom-0 end-0 me-2 mb-1">
+          <small>{{ commentForm.get('comment')?.value?.length || 0 }}/225</small>
+        </span>
       </div>
       <div class="col-auto d-flex align-items-center">
         <button type="button" class="btn btn-sm btn-primary" [disabled]="!commentForm.valid || addingComment" (click)="addComment()">
@@ -27,43 +30,45 @@
     </form>
   </div>
 
-  @for (comment of comments; track comment.id) {
-    <div class="d-flex align-items-center">
-      <img [src]="comment.user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{comment.user.username}}" />
-      <div class="w-100 py-2">
-        <div class="row small lh-sm">
-          <div class="col">
-            <strong>{{comment.user.username}}</strong>
+  <div class="mxh-500px overflow-scroll">
+    @for (comment of comments; track comment.id) {
+      <div class="d-flex align-items-center">
+        <img [src]="comment.user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{comment.user.username}}" />
+        <div class="w-100 py-2">
+          <div class="row small lh-sm">
+            <div class="col">
+              <strong>{{comment.user.username}}</strong>
+            </div>
+            <div class="col">
+              <small class="text-muted float-end">{{comment.createdAt | date:'MMM d, y h:mm a'}}</small>
+            </div>
           </div>
-          <div class="col">
-            <small class="text-muted float-end">{{comment.createdAt | date:'MMM d, y h:mm a'}}</small>
+          <div class="row small lh-sm border-bottom py-2">
+            <div class="col pe-0">
+              <span>{{comment.comment}}</span>
+            </div>
+            @if (comment.user.username == user.username) {
+            <div class="col-auto my-auto">
+              <button class="btn btn-sm btn-outline-danger" type="button" (click)="confirmDeleteComment(comment)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+            }
           </div>
-        </div>
-        <div class="row small lh-sm border-bottom py-2">
-          <div class="col pe-0">
-            <span>{{comment.comment}}</span>
-          </div>
-          @if (comment.user.username == user.username) {
-          <div class="col-auto my-auto">
-            <button class="btn btn-sm btn-outline-danger" type="button" (click)="confirmDeleteComment(comment)">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-          }
         </div>
       </div>
-    </div>
-  }
+    }
 
-  @if (!comments.length) {
-    <div class="d-flex text-end">
-      <div class="w-100 py-1 small text-muted">
-        There are no comments yet!
+    @if (!comments.length) {
+      <div class="d-flex text-end">
+        <div class="w-100 py-1 small text-muted">
+          There are no comments yet!
+        </div>
       </div>
-    </div>
-  } @else if (hasMoreComments) {
-    <small class="d-block text-end">
-      <button class="btn btn-sm btn-link" [disabled]="!hasMoreComments" (click)="loadMoreComments()">More Comments</button>
-    </small>
-  }
+    } @else if (hasMoreComments) {
+      <small class="d-block text-end">
+        <button class="btn btn-sm btn-link" [disabled]="!hasMoreComments" (click)="loadMoreComments()">More Comments</button>
+      </small>
+    }
+  </div>
 </div>
