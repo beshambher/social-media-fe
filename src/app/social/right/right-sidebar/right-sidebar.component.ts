@@ -33,7 +33,7 @@ export class RightSidebarComponent implements OnInit {
   }
 
   loadMore() {
-    this.http.getList(API.suggestions + '?page=' + (this.suggestions.number + 1)).subscribe(response => {
+    this.http.getList(API.suggestions, {page: (this.suggestions.number + 1)}).subscribe(response => {
       const previousData: [] = this.suggestions.content;
       this.suggestions = response;
       this.suggestions.content = previousData.concat(this.suggestions.content);

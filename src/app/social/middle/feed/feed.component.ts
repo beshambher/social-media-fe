@@ -37,6 +37,14 @@ export class FeedComponent implements OnInit {
     });
   }
 
+  loadMorePosts() {
+    this.http.getList<PaginatedPostsResponse>(API.userPosts, {page: (this.posts.number + 1)}).subscribe(response => {
+      const previousData: Post[] = this.posts.content;
+      this.posts = response;
+      this.posts.content = previousData.concat(this.posts.content);
+    });
+  }
+
   addPost() {
     this.http.post<Post>(API.posts, this.postForm.value).subscribe({
       next: (response) => {

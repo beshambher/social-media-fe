@@ -9,7 +9,10 @@ import { catchError, tap } from 'rxjs/operators';
 export class HttpService {
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'max-age=3600'
+    }),
     withCredentials: true
   };
 

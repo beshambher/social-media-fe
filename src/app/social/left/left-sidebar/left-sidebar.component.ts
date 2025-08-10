@@ -35,7 +35,7 @@ export class LeftSidebarComponent implements OnInit {
   }
 
   loadMore() {
-    this.http.getList(API.friends + '?page=' + (this.friends.number + 1)).subscribe(response => {
+    this.http.getList(API.friends, {page: (this.friends.number + 1)}).subscribe(response => {
       const previousData: [] = this.friends.content;
       this.friends = response;
       this.friends.content = previousData.concat(this.friends.content);
