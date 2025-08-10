@@ -25,9 +25,9 @@
               <strong class="text-gray-dark">{{user.firstName}} {{user.lastName}}</strong>
               <span class="text-muted d-block">{{user.username}}</span>
             </div>
-            <a routerLink="#" class="text-danger text-decoration-none my-auto" (click)="unfollowUser(user.username)">
+            <button class="btn btn-sm text-danger text-decoration-none my-auto" (click)="confirmUnfollowUser(user.username)">
               <i class="fas fa-trash"></i> Unfollow
-            </a>
+            </button>
           </div>
         </div>
       </div>
