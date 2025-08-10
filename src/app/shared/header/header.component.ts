@@ -16,8 +16,8 @@ export class HeaderComponent implements OnInit {
   constructor(public authService: AuthService) {
     this.navigation = [
       { title: 'Home', icon: 'fab fa-home', url: '/' },
+      { title: 'Profile', icon: 'fab fa-user-circle', url: '/my/profile' },
       { title: 'About', icon: 'fab fa-info', url: '/about' },
-      { title: 'Blog', icon: 'fab fa-rss-square', url: '' },
       { title: 'Contact', icon: 'fas fa-address-book', url: '/contact' },
     ];
   }

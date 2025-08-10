@@ -10,7 +10,7 @@ export class GuestGuard  {
 
   canActivate(): boolean | UrlTree {
     if (this.authService.isLoggedIn) {
-      this.router.navigateByUrl('in');
+      this.router.navigateByUrl('my');
     }
     return true;
   }

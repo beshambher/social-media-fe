@@ -4,7 +4,7 @@ import { AuthGuard } from './core/gaurds/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./portal/portal.module').then(m => m.PortalModule) },
-  { path: 'in', loadChildren: () => import('./social/social.module').then(m => m.SocialModule), canActivate: [AuthGuard] }
+  { path: 'my', loadChildren: () => import('./social/social.module').then(m => m.SocialModule), canActivate: [AuthGuard] }
 ];
 
 @NgModule({

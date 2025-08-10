@@ -1,0 +1,17 @@
+@for (post of posts.content; track post.id) {
+  <app-post [post]="post" (postDeleted)="onPostDeleted($event)"></app-post>
+}
+
+<div class="row mt-3">
+  @if (posts.numberOfElements === 0) {
+    <div class="d-flex text-end">
+      <div class="w-100 py-1 small text-muted">
+        You don't have any posts!
+      </div>
+    </div>
+  } @else if (!posts.last) {
+    <small class="text-end">
+      <button class="btn btn-primary" [disabled]="posts.last" (click)="loadMorePosts()">See More Posts</button>
+    </small>
+  }
+</div>

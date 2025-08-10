@@ -1,0 +1,35 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  @for (user of friends.content; track user.username) {
+    <div class="col">
+      <div class="card shadow-sm">
+        <img class="rounded-top img-thumbnail" [src]="user.avatar" alt="{{ user.username }}">
+        <div class="card-body">
+          <p class="card-text">
+            <strong>{{user.firstName}} {{user.lastName}}</strong> ({{user.username}})
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-primary" disabled="disabled">View</button>
+              <button type="button" class="btn btn-sm btn-outline-danger"
+                      (click)="confirmUnfollowUser(user.username)">Unfollow
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+<div class="row">
+  @if (friends.numberOfElements === 0) {
+    <div class="d-flex text-end">
+      <div class="w-100 py-1 small text-muted">
+        You are not following anyone yet!
+      </div>
+    </div>
+  } @else if (!friends.last) {
+    <small class="d-block text-end">
+      <button class="btn btn-sm btn-link" [disabled]="friends.last" (click)="loadMoreFriends()">See More Friends</button>
+    </small>
+  }
+</div>

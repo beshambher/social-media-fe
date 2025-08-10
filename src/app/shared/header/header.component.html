@@ -28,7 +28,7 @@
             {{authService.firstName}}
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle"></i> Profile</a></li>
+            <li><a class="dropdown-item" href="/my/profile"><i class="fas fa-user-circle"></i> Profile</a></li>
             <li><hr class="dropdown-divider"></li>
             @if (authService.isAdmin) {
               <li><a class="dropdown-item" href="{{api.swagger}}"><i class="fas fa-book"></i> Swagger API Docs</a></li>
