@@ -12,7 +12,14 @@
                Social Media: a place to connect with the people you know and share the happiness as the bond grow.
             </p>
             <div class="d-grid gap-2 d-md-flex justify-content-md-start py-3">
-                <a href="/" class="btn btn-primary btn-lg px-4 me-md-2">Get Started</a>
+              @if (authService.isLoggedIn) {
+                <a class="btn btn-primary btn-lg px-4 me-md-2" href="/">Get Started</a>
+              } @else {
+                <a class="btn btn-outline-dark btn-lg px-4 me-md-2" href="{{api.github}}">
+                  <i class="fab fa-github"></i> GitHub</a>
+                <a class="btn btn-outline-danger btn-lg px-4 me-md-2" href="{{api.google}}">
+                  <i class="fab fa-google"></i> Google</a>
+              }
             </div>
         </div>
     </div>

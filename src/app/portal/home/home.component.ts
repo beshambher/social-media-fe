@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { API } from 'src/app/core/services/constants/constant';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,9 @@ export class HomeComponent implements OnInit {
 
   public quote: string;
   public author: string;
+  public api = API;
 
-  constructor() {
+  constructor(public authService: AuthService) {
     const quotes = [
       ['A true friend accepts who you are, but also helps you become who you should be.', 'Unknown'],
       ['A good friend knows all your stories. A best friend helped you create them.', 'Unknown'],
