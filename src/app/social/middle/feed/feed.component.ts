@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { UserResponse } from 'src/app/core/services/auth/user-response.interface';
 import { HttpService } from 'src/app/core/services/http/http.service';
+import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { API, Constant } from 'src/app/core/services/constants/constant';
 import { Post, PaginatedPostsResponse } from '../post/post.interface';
 
@@ -18,7 +19,7 @@ export class FeedComponent implements OnInit {
   public posts: PaginatedPostsResponse;
   public postForm: FormGroup;
 
-  constructor(private authService: AuthService, private http: HttpService) {
+  constructor(private authService: AuthService, private http: HttpService, private toastService: ToastService) {
     this.posts = Constant.defaultPageResponse;
     this.postForm = new FormGroup({
       body: new FormControl('', [Validators.required, Validators.maxLength(4096)])
@@ -37,9 +38,18 @@ export class FeedComponent implements OnInit {
   }
 
   addPost() {
-    this.http.post<Post>(API.posts, this.postForm.value).subscribe(response => {
-      this.getPosts();
-      this.postForm.reset();
+    this.http.post<Post>(API.posts, this.postForm.value).subscribe({
+      next: (response) => {
+        this.toastService.showSuccess(
+        `Post "${this.postForm.value.body.substring(0, 30)}..." has been added successfully!`
+        );
+        this.getPosts();
+        this.postForm.reset();
+      },
+       error: (err) => {
+         console.error('Failed to add post:', err);
+         this.toastService.showError(`Failed to add post. ${err.message}. Please try again.`);
+       }
     });
   }
 
