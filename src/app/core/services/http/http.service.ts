@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -15,17 +15,42 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Helper method to convert a plain object into HttpParams.
+   * This makes it easier for components to pass query parameters as simple objects.
+   */
+  private buildHttpParams(params?: { [key: string]: any }): HttpParams {
+    let httpParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach(key => {
+        const value = params[key];
+        if (value !== null && value !== undefined) {
+          httpParams = httpParams.append(key, value.toString());
+        }
+      });
+    }
+    return httpParams;
+  }
+
   /** GET single response from the server */
-  get<T>(url: string): Observable<any> {
-    return this.http.get<T>(url, this.httpOptions)
+  get<T>(url: string, queryParams?: { [key: string]: any }): Observable<any> {
+    const options = {
+      ...this.httpOptions,
+      params: this.buildHttpParams(queryParams)
+    };
+    return this.http.get<T>(url, options)
       .pipe(
         catchError(this.handleError<T>())
       );
   }
 
   /** GET list response from the server */
-  getList<T>(url: string): Observable<any> {
-    return this.http.get<T>(url, this.httpOptions)
+  getList<T>(url: string, queryParams?: { [key: string]: any }): Observable<any> {
+    const options = {
+      ...this.httpOptions,
+      params: this.buildHttpParams(queryParams)
+    };
+    return this.http.get<T>(url, options)
       .pipe(
         catchError(this.handleError<T>())
       );

@@ -20,8 +20,10 @@ export class CommentsComponent implements OnInit {
     public comments: any[] = [];
     public commentForm: FormGroup;
 
-    public inProgress: boolean = false;
+    public nextPage: number = 1;
     public addingComment: boolean = false;
+    public hasMoreComments: boolean = false;
+    public inProgress: boolean = false;
 
     constructor(
       private authService: AuthService,
@@ -36,7 +38,14 @@ export class CommentsComponent implements OnInit {
     }
 
     ngOnInit(): void {
+      this.resetComments();
       this.user = this.authService.getUser();
+    }
+
+    resetComments() {
+      this.nextPage = 1;
+      this.comments = [];
+      this.hasMoreComments = false;
     }
 
     addComment() {
@@ -75,13 +84,15 @@ export class CommentsComponent implements OnInit {
       if (this.inProgress || isCollapsed) {
         return;
       }
-
       this.inProgress = true;
+
+      this.resetComments();
 
       this.http.get<PaginatedCommentsResponse>(API.postComments.replace('{1}', this.post.id)).subscribe({
         next: (response) => {
           this.comments = response.content;
           this.inProgress = false;
+          this.hasMoreComments = !response.last;
         },
         error: (err) => {
           console.error('Failed to fetch post comments:', err);
@@ -90,6 +101,28 @@ export class CommentsComponent implements OnInit {
         }
       });
     }
+
+  loadMoreComments() {
+    this.http.get<PaginatedCommentsResponse>(
+      API.postComments.replace('{1}', this.post.id), {page: this.nextPage}
+    ).subscribe({
+      next: (response) => {
+        if (response.first) {
+          this.comments = response.content;
+        } else {
+          this.comments = this.comments.concat(response.content);
+        }
+        this.hasMoreComments = !response.last;
+        if (this.hasMoreComments) {
+          this.nextPage++;
+        }
+      },
+      error: (err) => {
+        console.error('Failed to fetch more post comments:', err);
+        this.toastService.showError(`Failed to fetch more post comments. ${err.message}. Please try again.`);
+      }
+    });
+  }
 
   confirmDeleteComment(comment: Comment): void {
     this.popupService.open({

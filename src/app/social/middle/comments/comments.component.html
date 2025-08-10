@@ -54,4 +54,16 @@
       </div>
     </div>
   }
+
+  @if (!comments.length) {
+    <div class="d-flex text-end">
+      <div class="w-100 py-1 small text-muted">
+        There are no comments yet!
+      </div>
+    </div>
+  } @else if (hasMoreComments) {
+    <small class="d-block text-end">
+      <button class="btn btn-sm btn-link" [disabled]="!hasMoreComments" (click)="loadMoreComments()">More Comments</button>
+    </small>
+  }
 </div>
