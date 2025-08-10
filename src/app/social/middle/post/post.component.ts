@@ -79,7 +79,7 @@ export class PostComponent implements OnInit {
       },
       error: (err) => {
         console.error('Failed to delete post:', err);
-        this.toastService.showError(`Failed to delete post. ${err.message}. Please try again.`);
+        this.toastService.showError(`Failed to delete the post. ${err.message}. Please try again.`);
       }
     });
   }

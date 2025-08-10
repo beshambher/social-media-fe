@@ -45,7 +45,7 @@
           </div>
           @if (comment.user.username == user.username) {
           <div class="col-auto my-auto">
-            <button class="btn btn-sm btn-outline-danger" type="button" (click)="deleteComment(comment.id)">
+            <button class="btn btn-sm btn-outline-danger" type="button" (click)="confirmDeleteComment(comment)">
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>

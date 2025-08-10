@@ -40,6 +40,7 @@ export abstract class API {
     public static post: string = API.base + '/social/posts/{1}';
     public static like: string = API.base + '/social/posts/{1}/like';
     public static comments: string = API.base + '/social/comments';
+    public static comment: string = API.base + '/social/comments/{1}';
     public static postComments: string = API.base + '/social/posts/{1}/comments';
 
     public static swagger: string = API.base + '/swagger-ui/index.html';

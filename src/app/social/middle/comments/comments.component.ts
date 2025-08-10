@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
+import { PopupService } from 'src/app/core/services/popup/popup.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { API } from 'src/app/core/services/constants/constant';
 import { Comment, PaginatedCommentsResponse } from './comment.interface';
@@ -25,6 +26,7 @@ export class CommentsComponent implements OnInit {
     constructor(
       private authService: AuthService,
       private http: HttpService,
+      private popupService: PopupService,
       private toastService: ToastService
     ) {
       this.commentForm = new FormGroup({
@@ -49,8 +51,10 @@ export class CommentsComponent implements OnInit {
         next: (response) => {
           this.post.commentsCount++;
           this.loadComments();
+          this.toastService.showSuccess(
+            `Comment "${this.commentForm.value.comment.substring(0, 30)}..." has been added successfully!`
+          );
           this.commentForm.reset();
-          this.toastService.showSuccess('Comment added successfully!');
           this.addingComment = false;
         },
         error: (err) => {
@@ -87,6 +91,33 @@ export class CommentsComponent implements OnInit {
       });
     }
 
-    deleteComment(commentId: string): void {
-    }
+  confirmDeleteComment(comment: Comment): void {
+    this.popupService.open({
+      title: 'Confirm Deletion',
+      type: 'error',
+      message: `Are you sure you want to delete the comment "${comment.comment.substring(0, 30)}..."?
+      This action cannot be undone.`,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No'
+    }).then(confirmed => {
+      if (confirmed) {
+        this.deleteComment(comment);
+      } else {
+        this.toastService.showInfo('Comment deletion cancelled.');
+      }
+    });
+  }
+
+  deleteComment(comment: Comment): void {
+    this.http.delete<Comment>(API.comment.replace('{1}', comment.id)).subscribe({
+      next: (response) => {
+        this.toastService.showSuccess(`Comment "${comment.comment.substring(0, 30)}..." has been deleted successfully!`);
+        this.comments = this.comments.filter((c: Comment) => c.id !== comment.id);
+      },
+      error: (err) => {
+        console.error('Failed to delete comment:', err);
+        this.toastService.showError(`Failed to delete the comment. ${err.message}. Please try again.`);
+      }
+    });
+  }
 }
