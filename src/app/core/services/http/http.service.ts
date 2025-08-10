@@ -17,7 +17,7 @@ export class HttpService {
 
   /** GET single response from the server */
   get<T>(url: string): Observable<any> {
-    return this.http.get(url, this.httpOptions)
+    return this.http.get<T>(url, this.httpOptions)
       .pipe(
         catchError(this.handleError<T>())
       );
@@ -25,7 +25,7 @@ export class HttpService {
 
   /** GET list response from the server */
   getList<T>(url: string): Observable<any> {
-    return this.http.get(url, this.httpOptions)
+    return this.http.get<T>(url, this.httpOptions)
       .pipe(
         catchError(this.handleError<T>())
       );
@@ -33,7 +33,7 @@ export class HttpService {
 
   /** POST a resource to the server */
   post<T>(url: string, data: any): Observable<any> {
-    return this.http.post(url, data, this.httpOptions)
+    return this.http.post<T>(url, data, this.httpOptions)
       .pipe(
         catchError(this.handleError<T>())
       );
@@ -41,7 +41,15 @@ export class HttpService {
 
   /** PUT a resource on the server */
   put<T>(url: string, data: any): Observable<any> {
-    return this.http.put(url, data, this.httpOptions)
+    return this.http.put<T>(url, data, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<T>())
+      );
+  }
+
+  /** DELETE a resource from the server */
+  delete<T>(url: string): Observable<any> {
+    return this.http.delete<T>(url, this.httpOptions)
       .pipe(
         catchError(this.handleError<T>())
       );
@@ -55,9 +63,7 @@ export class HttpService {
    */
   private handleError<T>() {
     return (error: any): Observable<T> => {
-
-      console.error(error); // log to console instead
-
+      console.error(error);
       // Let the app keep running by returning an empty result.
       return throwError(error);
     };

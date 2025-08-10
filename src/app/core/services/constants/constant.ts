@@ -1,4 +1,5 @@
 import { environment } from "src/environments/environment";
+import { PageableDetails } from 'src/app/shared/models/pageable.interface';
 
 export abstract class Constant {
 
@@ -16,7 +17,17 @@ export abstract class Constant {
         number: 0,
         totalPages: 1,
         totalElements: 0,
-        numberOfElements: 0
+        numberOfElements: 0,
+        empty: true,
+        sort: [],
+        pageable: {
+            sort: [],
+            offset: 0,
+            pageNumber: 0,
+            pageSize: 10,
+            paged: true,
+            unpaged: false
+        } as PageableDetails
     }
 
 }

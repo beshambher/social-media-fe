@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { UserResponse } from 'src/app/core/services/auth/user-response.interface';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { API, Constant } from 'src/app/core/services/constants/constant';
+import { Post, PaginatedPostsResponse } from '../post/post.interface';
 
 @Component({
   selector: 'app-feed',
@@ -12,8 +14,8 @@ import { API, Constant } from 'src/app/core/services/constants/constant';
 })
 export class FeedComponent implements OnInit {
 
-  public user: any;
-  public posts: any;
+  public user: UserResponse | any;
+  public posts: PaginatedPostsResponse;
   public postForm: FormGroup;
 
   constructor(private authService: AuthService, private http: HttpService) {
@@ -29,13 +31,13 @@ export class FeedComponent implements OnInit {
   }
 
   getPosts() {
-    this.http.getList(API.posts).subscribe(response => {
+    this.http.getList<PaginatedPostsResponse>(API.posts).subscribe(response => {
       this.posts = response;
     });
   }
 
   addPost() {
-    this.http.post(API.posts, this.postForm.value).subscribe(response => {
+    this.http.post<Post>(API.posts, this.postForm.value).subscribe(response => {
       this.getPosts();
       this.postForm.reset();
     });

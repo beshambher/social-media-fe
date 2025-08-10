@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { API } from '../constants/constant';
 import { HttpService } from '../http/http.service';
+import { UserResponse } from './user-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
   constructor(private http: HttpService) { }
 
   fetchUser() {
-    return this.http.get(API.session).subscribe(response => {
+    return this.http.get<UserResponse>(API.session).subscribe(response => {
       localStorage.setItem('session', JSON.stringify(response));
     }, error => {
       localStorage.removeItem('session');

@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { API } from 'src/app/core/services/constants/constant';
+import { Post } from './post.interface';
 
 @Component({
   selector: 'app-post',
@@ -33,7 +34,7 @@ export class PostComponent implements OnInit {
 
     this.inProgress = true;
 
-    this.http.put(API.like.replace('{1}', this.post.id), {}).subscribe({
+    this.http.put<Post>(API.like.replace('{1}', this.post.id), {}).subscribe({
       next: (response) => {
         this.toastService.showSuccess(
           `Post ${response.likes > this.post.likes ? 'liked' : 'unliked'} successfully!`

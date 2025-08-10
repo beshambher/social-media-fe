@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { HttpService } from 'src/app/core/services/http/http.service';
 import { ToastService } from 'src/app/core/services/toast/toast.service';
 import { API } from 'src/app/core/services/constants/constant';
+import { Comment, PaginatedCommentsResponse } from './comment.interface';
 
 @Component({
   selector: 'app-comments',
@@ -44,7 +45,7 @@ export class CommentsComponent implements OnInit {
       this.addingComment = true;
 
       this.commentForm.patchValue({ postId: this.post.id });
-      this.http.post(API.comments, this.commentForm.value).subscribe({
+      this.http.post<Comment>(API.comments, this.commentForm.value).subscribe({
         next: (response) => {
           this.post.commentsCount++;
           this.loadComments();
@@ -73,7 +74,7 @@ export class CommentsComponent implements OnInit {
 
       this.inProgress = true;
 
-      this.http.get(API.postComments.replace('{1}', this.post.id)).subscribe({
+      this.http.get<PaginatedCommentsResponse>(API.postComments.replace('{1}', this.post.id)).subscribe({
         next: (response) => {
           this.comments = response.content;
           this.inProgress = false;
