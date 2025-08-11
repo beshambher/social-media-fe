@@ -14,6 +14,9 @@
               <small>{{ postForm.get('body')?.value?.length || 0 }}/4096</small>
             </span>
           </div>
+          @if (posts.content.length === 0) {
+            <div class="mt-3 small text-muted float-start"> You don't have any posts! </div>
+          }
           <button type="button" class="btn btn-primary mt-2 float-end" [disabled]="!postForm.valid" (click)="addPost()">
             <i class="fas fa-pencil-alt"></i> Post
           </button>
@@ -25,13 +28,7 @@
     }
 
     <div class="row mt-3">
-      @if (posts.numberOfElements === 0) {
-        <div class="d-flex text-end">
-          <div class="w-100 py-1 small text-muted">
-            You don't have any posts!
-          </div>
-        </div>
-      } @else if (!posts.last) {
+      @if (!posts.last) {
         <small class="text-end">
           <button class="btn btn-primary" [disabled]="posts.last" (click)="loadMorePosts()">See More Posts</button>
         </small>

@@ -1,7 +1,7 @@
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mt-3">
   @for (user of friends.content; track user.username) {
     <div class="col">
-      <div class="card shadow-sm">
+      <div class="card shadow">
         <img class="rounded-top img-thumbnail" [src]="user.avatar" alt="{{ user.username }}">
         <div class="card-body">
           <p class="card-text">
@@ -21,7 +21,7 @@
   }
 </div>
 <div class="row">
-  @if (friends.numberOfElements === 0) {
+  @if (friends.content.length === 0) {
     <div class="d-flex text-end">
       <div class="w-100 py-1 small text-muted">
         You are not following anyone yet!

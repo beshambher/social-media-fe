@@ -6,13 +6,13 @@
         <img [src]="user.avatar" class="me-3 rounded-circle border-0" width="48" height="48" alt="{{user.username}}" />
         <div class="py-2 mb-0 small lh-sm border-bottom w-100">
           <div class="d-flex justify-content-between">
-            <div class="text-truncate">
+            <div class="text-truncate my-auto">
                 <strong class="text-gray-dark">{{user.firstName}} {{user.lastName}}</strong>
                 <span class="text-muted d-block">{{user.username}}</span>
             </div>
-            <a routerLink="#" class="text-decoration-none my-auto" (click)="followUser(user.username)">
+            <button class="btn btn-sm text-primary text-decoration-none my-auto" (click)="followUser(user.username)">
               <i class="fas fa-shoe-prints"></i> Follow
-            </a>
+            </button>
           </div>
         </div>
       </div>
