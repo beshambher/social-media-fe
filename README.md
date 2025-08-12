@@ -1,7 +1,7 @@
-# [Social Media FrontEnd](https://social-media-beshambher.herokuapp.com/)
+# [Social Media FrontEnd](https://social-media-ibue.onrender.com/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4. <br>
-The site is published at https://social-media-beshambher.herokuapp.com/
+The site is published at https://social-media-ibue.onrender.com/
 
 ## Development server
 
